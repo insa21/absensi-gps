@@ -1,0 +1,8 @@
+tambahan:
+- di keterangan pada absensi apabila absensi setelah jam 9 maka akan di anggap alfa, serta apabila keluar sebelum jam 2 siang maka akan bolos
+contoh di keterangan:
+- benar => hadir - hadir
+- alfa => alfa - hadir
+- bolos => hadir - bolos
+- keduanya => alfa - bolos
+
