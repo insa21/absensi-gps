@@ -14,7 +14,7 @@ include('../layout/header.php');
 include_once("../../config.php");
 
 if (isset($_POST['submit'])) {
-    $id = $_POST['id_siswa'];
+    $id_siswa = $_POST['id_siswa'];
     $keterangan = $_POST['keterangan'];
     $tanggal = $_POST['tanggal'];
     $deskripsi = $_POST['deskripsi'];
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['validasi'] = implode("<br>", $pesan_kesalahan);
     } else {
         // Simpan data ke database
-        $result = mysqli_query($connection, "INSERT INTO ketidakhadiran(id_siswa, keterangan, deskripsi, tanggal, status_pengajuan, file) VALUES ('$id', '$keterangan', '$deskripsi', '$tanggal', '$status_pengajuan', '$nama_file')");
+        $result = mysqli_query($connection, "INSERT INTO ketidakhadiran(id_siswa, keterangan, deskripsi, tanggal, status_pengajuan, file) VALUES ('$id_siswa', '$keterangan', '$deskripsi', '$tanggal', '$status_pengajuan', '$nama_file')");
 
         $_SESSION['berhasil'] = 'Data berhasil disimpan';
         header('Location: ketidakhadiran.php');
@@ -64,8 +64,8 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$id = $_SESSION['id'];
-$result = mysqli_query($connection, "SELECT * FROM ketidakhadiran WHERE id_siswa = '$id' ORDER BY id DESC");
+$id_siswa = $_SESSION['id'];
+$result = mysqli_query($connection, "SELECT * FROM ketidakhadiran WHERE id_siswa = '$id_siswa' ORDER BY id_siswa DESC");
 ?>
 
 <div class="page-body">
@@ -74,7 +74,7 @@ $result = mysqli_query($connection, "SELECT * FROM ketidakhadiran WHERE id_siswa
         <div class="card col-md-6">
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" value="<?= $_SESSION['id'] ?>" name="id_siswa">
+                    <input type="hidden" value="<?= $_SESSION['id_siswa'] ?>" name="id_siswa">
 
                     <div class="md-3">
                         <label for="">Keterangan</label>
@@ -97,7 +97,7 @@ $result = mysqli_query($connection, "SELECT * FROM ketidakhadiran WHERE id_siswa
                         <label for="">Surat Keterangan</label>
                         <input name="file" type="file" class="form-control ">
                     </div>
-
+                    <br>
                     <button type="submit" class="btn btn-primary" name="submit">Ajukan</button>
                 </form>
             </div>
